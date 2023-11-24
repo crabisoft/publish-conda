@@ -1,0 +1,28 @@
+name: 'Publish Conda forge action'
+description: 'Build and Publish Conda package to Anaconda'
+author: 'Jacques Raphanel'
+branding:
+  icon: 'package'  
+  color: 'purple'
+inputs: 
+  sub-directory:
+    description: 'Specifies a sub directory within the repository containing your meta.yml or conda_build_config files'
+    default: 'conda'
+  build-channels:
+    description: 'Space separated string of conda channels to use during the build'
+    default: 'conda-forge'
+  upload-channel:
+    description: 'Conda channel where the package will be uploaded'
+    default: 'conda-forge'
+  platforms: 
+    description: 'Space separated string of platforms to build'
+    default: 'win-64 osx-64 linux-64'
+  stable:
+    description: 'true for stable release, else false to indicate a beta version'
+    default: true
+  token:
+    description: 'Anaconda access token with read and write API permissions'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
